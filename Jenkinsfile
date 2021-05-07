@@ -21,7 +21,7 @@ pipeline{
 					sh "mvn verify"
 				}
 		}
-		stage("performance-test"){
+		stage("war"){
 				steps{
 					sh "mvn package"
 				}
