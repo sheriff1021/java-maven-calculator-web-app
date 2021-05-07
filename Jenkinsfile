@@ -1,44 +1,30 @@
-node {
-   def mvnHome = tool 'M3'
-
-   stage('Checkout Code') { 
-      git 'https://github.com/maping/java-maven-calculator-web-app.git'
-   }
-   stage('JUnit Test') {
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' clean test"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" clean test/)
-      }
-   }
-   stage('Integration Test') {
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' integration-test"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" integration-test/)
-      }
-   }
- /*
-   stage('Performance Test') {
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' cargo:start verify cargo:stop"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" cargo:start verify cargo:stop/)
-      }
-   }
-  */
-  stage('Performance Test') {
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' verify"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" verify/)
-      }
-   }
-   stage('Deploy') {
-      timeout(time: 10, unit: 'MINUTES') {
-           input message: 'Deploy this web app to production ?'
-      }
-      echo 'Deploy...'
-   }
+#!groovy
+pipeline{
+	stages{
+		stage("checkout"){
+				steps{
+					git([url: 'git@github.com:sheriff1021/java-maven-calculator-web-app.git'],branch: 'vova')	
+				}
+		}
+		stage("testing"){
+				steps{
+					sh "mvn clean test"
+				}
+		}
+		stage("unit-test"){
+				steps{
+					sh "mvn integration-test"
+				}
+		}
+		stage("performance-test"){
+				steps{
+					sh "mvn verify"
+				}
+		}
+		stage("performance-test"){
+				steps{
+					sh "mvn package"
+				}
+		}
+	}
 }
-   
