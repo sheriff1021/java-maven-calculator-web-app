@@ -7,7 +7,7 @@ pipeline{
 	environment{
 		custom_var=null	
 		tmp_param =  sh (script: '''echo $BUILD_NUMBER''', returnStdout: true).trim()
-               	env.custom_var = tmp_param
+               	custom_var = tmp_param
 	}
 	stages{
 		stage("checkout"){
