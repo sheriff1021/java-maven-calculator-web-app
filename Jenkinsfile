@@ -4,6 +4,9 @@ pipeline{
 	triggers {
 		pollSCM('H/5 * * * *') 
 		}
+	environment{
+		BLD=$BUILD_NUMBER
+	}
 	stages{
 		stage("checkout"){
 				steps{
@@ -37,10 +40,9 @@ pipeline{
 					sh "curl -v --user 'admin:admin' --upload-file ./calculator.tar.gz http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD_NUMBER}/calculator.tar.gz"					
 				}
 		}
-		stage("make work downstream job"){
-				 def BLD = echo "${env.BUILD_NUMBER}"
+		stage("make work downstream job"){				
 				steps{
-					build job: "job-2", parameters: [$class: 'StringParameterValue', name: 'numba', value: BLD], wait: true
+					build job: "job-2", parameters: [$class: 'StringParameterValue', name: 'numba', value: env.BLD], wait: true
 				}
 		}
 
