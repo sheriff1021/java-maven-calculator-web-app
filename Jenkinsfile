@@ -4,6 +4,9 @@ pipeline{
 	triggers {
 		pollSCM('H/5 * * * *') 
 		}
+	environment{
+		custom_var=null	
+	}
 	stages{
 		stage("checkout"){
 				steps{
@@ -39,7 +42,10 @@ pipeline{
 		}
 		stage("make work downstream job"){				
 				steps{
-					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: sh '''echo $BUILD_NNUMBER''']], wait: true
+					tmp_param =  sh (script: 'echo $BUILD_NUMBER', returnStdout: true).trim()
+               				env.custom_var = tmp_param
+					echo env.custom_var
+					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: env.custom_var]], wait: true
 				}
 		}
 
