@@ -38,9 +38,7 @@ pipeline{
 				}
 		}
 		stage("make work downstream job"){
-				 def BLD = sh(returnStdout: true, script: """
-        			 #!/bin/bash
-      				 echo $BUILD_NUMBER""")
+				 def BLD = echo "${env.BUILD_NUMBER}"
 				steps{
 					build job: "job-2", parameters: [$class: 'StringParameterValue', name: 'numba', value: BLD], wait: true
 				}
