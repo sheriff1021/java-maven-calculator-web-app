@@ -34,7 +34,7 @@ pipeline{
 				steps{
 					sh "cd /var/lib/jenkins/workspace/job-1/target"
 					sh "tar -czf calculator.tar.gz calculator.war"
-					sh "curl -v --user 'admin:admin' --upload-file ./calculator.tar.gz http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD-NUMBER}/calculator.tar.gz"					
+					sh "curl -v --user 'admin:admin' --upload-file ./calculator.tar.gz http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD_NUMBER}/calculator.tar.gz"					
 				}
 		}
 
