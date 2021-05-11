@@ -40,7 +40,7 @@ pipeline{
 		stage("make work downstream job"){				
 				steps{
 					sh "echo $BUILD_NUMBER"
-					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: ${BUID_NUMBER}]], wait: true
+					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: sh "echo $BUILD_NUMBER"]], wait: true
 				}
 		}
 
