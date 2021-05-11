@@ -4,10 +4,6 @@ pipeline{
 	triggers {
 		pollSCM('H/5 * * * *') 
 		}
-	environment{
-		def BLD=sh "echo $BUILD_NUMBER"
-		sh "echo ${BLD}"
-	}
 	stages{
 		stage("checkout"){
 				steps{
@@ -43,7 +39,8 @@ pipeline{
 		}
 		stage("make work downstream job"){				
 				steps{
-					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: env.BLD]], wait: true
+					sh "echo $BUILD_NUMBER"
+					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: ${BUID_NUMBER}], wait: true
 				}
 		}
 
