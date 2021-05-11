@@ -39,11 +39,7 @@ pipeline{
 		}
 		stage("make work downstream job"){				
 				steps{
-					step{
-						def  some_var = "Hello World" // this is Groovy
-       					 	echo some_var // printing via Groovy works
-        					sh "echo $some_var" // printing in shell does not work
-					}					 
+					def cnt=71					 
 
 					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: BLD]], wait: true
 				}
