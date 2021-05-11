@@ -6,6 +6,7 @@ pipeline{
 		}
 	environment{
 		BLD=sh "echo $BUILD_NUMBER"
+		echo BLD
 	}
 	stages{
 		stage("checkout"){
