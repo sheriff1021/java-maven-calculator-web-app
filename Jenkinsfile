@@ -5,9 +5,8 @@ pipeline{
 		pollSCM('H/5 * * * *') 
 		}
 	environment{
-		custom_var=null	
-		tmp_param =  sh (script: '''echo $BUILD_NUMBER''', returnStdout: true).trim()
-               	custom_var = tmp_param
+		custom_var=sh (script: '''echo $BUILD_NUMBER''', returnStdout: true).trim()
+
 	}
 	stages{
 		stage("checkout"){
