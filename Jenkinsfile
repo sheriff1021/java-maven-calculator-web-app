@@ -7,7 +7,7 @@ pipeline{
 	stages{
 		stage("checkout"){
 				steps{
-					git([url: 'https://github.com/sheriff1021/java-maven-calculator-web-app.git',branch: 'vova'])	
+					git([url: 'https://github.com/sheriff1021/java-maven-	calculator-web-app.git',branch: 'vova'])	
 				}
 		}
 		stage("testing"){
@@ -30,5 +30,11 @@ pipeline{
 					sh "mvn package"
 				}
 		}
+		stage("nexus"){
+				steps{
+					sh "curl -v --user 'admin:admin' --upload-file ./target/calculator.war http://localhost:8081/repository/maven-releases/calculator.war"
+				}
+		}
+
 	}
 }
