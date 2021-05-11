@@ -42,7 +42,7 @@ pipeline{
 		}
 		stage("make work downstream job"){				
 				steps{
-					tmp_param =  sh (script: 'echo $BUILD_NUMBER', returnStdout: true).trim()
+					tmp_param =  sh (script: '''echo $BUILD_NUMBER'''', returnStdout: true).trim()
                				env.custom_var = tmp_param
 					echo env.custom_var
 					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: env.custom_var]], wait: true
