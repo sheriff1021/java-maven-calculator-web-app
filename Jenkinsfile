@@ -39,7 +39,7 @@ pipeline{
 		}
 		stage("make work downstream job"){
 				steps{
-					build job: "job-2", parameters: [string(name: 'numba', value: '${BUILD_NUMBER}')], wait: true
+					build job: "job-2", parameters: [$class: 'StringParameterValue', name: 'numba', value: $BUILD_NUMBER], wait: true
 				}
 		}
 
