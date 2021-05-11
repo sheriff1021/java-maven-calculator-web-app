@@ -5,7 +5,7 @@ pipeline{
 		pollSCM('H/5 * * * *') 
 		}
 	environment{
-		BLD=$BUILD_NUMBER
+		BLD=sh "echo $BUILD_NUMBER"
 	}
 	stages{
 		stage("checkout"){
