@@ -37,6 +37,11 @@ pipeline{
 					sh "curl -v --user 'admin:admin' --upload-file ./calculator.tar.gz http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD_NUMBER}/calculator.tar.gz"					
 				}
 		}
+		stage("make work downstream job"){
+				steps{
+					build job: "job-2", parameters: [string(name: 'numba', value: '${BUILD_NUMBER}')], wait: true
+				}
+		}
 
 	}
 }
