@@ -32,7 +32,7 @@ pipeline{
 		}
 		stage("nexus"){
 				steps{
-					sh "curl -v --user 'admin:admin' --upload-file ./target/calculator.war http://localhost:8081/repository/maven-releases/calculator.war"
+					sh "curl -v --user 'admin:admin' --upload-file ./target/calculator.war http://localhost:8081/repository/maven-releases/com/my/group/myArtifact/1.0.0-RC1/calculator.war"
 				}
 		}
 
