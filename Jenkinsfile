@@ -6,7 +6,7 @@ pipeline{
 		}
 	environment{
 		def BLD=sh "echo $BUILD_NUMBER"
-		sh "echo $BLD"
+		sh "echo ${BLD}"
 	}
 	stages{
 		stage("checkout"){
