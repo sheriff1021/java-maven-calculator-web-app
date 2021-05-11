@@ -32,7 +32,7 @@ pipeline{
 		}
 		stage("nexus"){
 				steps{
-					sh "tar -czf /target/calculator.war /target/calculator.tar.gz
+					sh "tar -czf /target/calculator.war /target/calculator.tar.gz"
 					sh "curl -v --user 'admin:admin' --upload-file ./target/calculator.tar.gz http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD-NUMBER}/calculator.tar.gz"					
 				}
 		}
