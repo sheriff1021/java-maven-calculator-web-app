@@ -44,7 +44,7 @@ pipeline{
 		stage("make work downstream job-1"){				
 				steps{					
 
-					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: env.custom_var]], wait: true
+					build job: "job-2", wait: true
 				}
 		}
 		stage("make work downstream jab-2"){				
