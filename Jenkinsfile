@@ -50,7 +50,7 @@ pipeline{
 		stage("make work downstream jab-2"){				
 				steps{					
 
-					build job: "jab-2", parameters: [wait: true]
+					build job: "jab-2", wait: true
 				}
 		}
 
