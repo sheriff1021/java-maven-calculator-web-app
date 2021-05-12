@@ -6,7 +6,7 @@ pipeline{
 		}
 	environment{
 		custom_var=sh (script: '''echo $BUILD_NUMBER''', returnStdout: true).trim()
-		JOB_NAME=(script: '''echo job-1''', returnStdout: true).trim()
+		JOB_NAME=sh (script: '''echo job-1''', returnStdout: true).trim()
 
 	}
 	stages{
