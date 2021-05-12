@@ -41,10 +41,16 @@ pipeline{
 					sh "curl -v --user 'admin:admin' --upload-file target/calculator.tar http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD_NUMBER}/calculator.tar"					
 				}
 		}
-		stage("make work downstream job"){				
+		stage("make work downstream job-1"){				
 				steps{					
-					echo env.custom_var
+
 					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: env.custom_var]], wait: true
+				}
+		}
+		stage("make work downstream job-1"){				
+				steps{					
+
+					build job: "job-2", parameters: wait: true
 				}
 		}
 
