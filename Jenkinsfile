@@ -47,10 +47,10 @@ pipeline{
 					build job: "job-2", parameters: [[$class: 'StringParameterValue', name: 'numba', value: env.custom_var]], wait: true
 				}
 		}
-		stage("make work downstream job-1"){				
+		stage("make work downstream jab-2"){				
 				steps{					
 
-					build job: "job-2", parameters: wait: true
+					build job: "jab-2", parameters: [wait: true]
 				}
 		}
 
