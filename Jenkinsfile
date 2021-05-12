@@ -38,7 +38,7 @@ pipeline{
 				steps{
 					sh "cd /var/lib/jenkins/workspace/job-1/target"
 					sh "tar -cf /var/lib/jenkins/workspace/job-1/target/calculator.tar /var/lib/jenkins/workspace/job-1/target/calculator.war"
-					sh "curl -v --user 'admin:admin' --upload-file ./calculator.tar http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD_NUMBER}/calculator.tar"					
+					sh "curl -v --user 'admin:admin' --upload-file ./target/calculator.tar http://localhost:8081/repository/maven-releases/com/company/sample-app/${BUILD_NUMBER}/calculator.tar"					
 				}
 		}
 		stage("make work downstream job"){				
