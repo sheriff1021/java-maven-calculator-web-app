@@ -61,10 +61,10 @@ pipeline{
            	 	echo 'This will always run'
         	}
         	success {
-            		mail bcc: '', body: "<b>Example</b><br>\n\<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.custom_var} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', 				mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "vladimir_yarygin@epam.com";
+            		mail bcc: '', body: "<b>Example</b><br>\n<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.custom_var} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', 				mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "vladimir_yarygin@epam.com";
        		}
         	failure {
-           		 mail bcc: '', body: "<b>Example</b><br>\n\<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.custom_var} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', 				mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "vladimir_yarygin@epam.com";
+           		 mail bcc: '', body: "<b>Example</b><br>\n<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.custom_var} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', 				mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "vladimir_yarygin@epam.com";
      	        }
         	unstable {
             		echo 'This will run only if the run was marked as unstable'
